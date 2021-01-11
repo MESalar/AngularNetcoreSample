@@ -1,0 +1,61 @@
+<!--
+  "data": {
+    "reserveId": 6,
+    "reseveDate": "1399/10/17",
+    "tickets": [
+        {
+            "fullName": "محمد ابراهیم سالاریان",
+            "price": 150000,
+            "source": "شیراز , فرودگاه شهید دستغیب",
+            "destination": "تبریز , فرودگاه شهید مدنی",
+            "flightDate": "1399/10/25",
+            "ticketCode": 1
+        },
+        {
+            "fullName": "محمد محمدی نیا",
+            "price": 150000,
+            "source": "شیراز , فرودگاه شهید دستغیب",
+            "destination": "تبریز , فرودگاه شهید مدنی",
+            "flightDate": "1399/10/25",
+            "ticketCode": 2
+        }
+    ]
+} -->
+
+<h2 class="m-3 text-right">نمایش بلیط</h2>
+<h6 class="toast-header rtl">
+  <strong class="mr-auto text-primary">
+    <p>خریدار: {{data.userName }}</p>
+    <p>تاریخ رزرو: {{data.reseveDate}}</p>
+  </strong>
+</h6>
+
+<h6 class="rtl">
+</h6>
+<div *ngFor="let ticket of data.tickets">
+
+  <div class="container p-3 my-3 border row rtl">
+  <p class="col-md-4">شماره پرواز: {{ticket.ticketCode }}</p>
+  <p class="col-md-4">تاریخ پرواز: {{ticket.flightDate }}</p>
+  <p class="col-md-4">نام مسافر: {{ticket.fullName }}</p>
+  <p class="col-md-4">حرکت از مبداء: {{ticket.source }}</p>
+  <p class="col-md-4">به مقصد: {{ticket.destination }}</p>
+  <p class="col-md-4">قیمت: {{ticket.price }}</p>
+<!--
+    <div class="form-group col-md-5">
+      <label for="NationalityCode">کد ملی</label>
+      <input type="text" name="username" class="form-control" [(ngModel)]="pass.NationalityCode" />
+    </div>
+    <div class="form-group col-md-5">
+      <label for="FullName">نام </label>
+      <input type="text" name="FullName" class="form-control" [(ngModel)]="pass.FullName" />
+    </div>
+    <div class="form-group col-md-2">
+      <label for="Age">سن</label>
+      <input type="number" name="Age" class="form-control" [(ngModel)]="pass.Age" />
+    </div>
+    <div class="form-group">
+
+    </div> -->
+  </div>
+</div>

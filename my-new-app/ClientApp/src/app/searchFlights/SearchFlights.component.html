@@ -1,0 +1,90 @@
+<h1 id="tableLabel" class="m-3 text-right">جستجوی پرواز</h1>
+
+<div class="row m-1">
+  <!-- <select name="selectedQuantity" id="aantal" class="form-control" [(ngModel)]="selectedQuantity">
+    <option *ngFor="let option of options" [value]="option" >{{option}}</option>
+</select> -->
+  <!-- <div class="col-md-3">
+
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <span class="input-group-text" id="basic-addon2">@example.com</span>
+    </div>
+  </div> -->
+  <div class="input-group mb-3 col-md-3">
+
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="Source-addon">مبداء</span>
+    </div>
+    <select (change)="searchFlights()" id="Source" name="Source" class="form-control" [(ngModel)]="SourceId"
+     placeholder="مبداء" aria-label="مبداء" aria-describedby="Source-addon">
+      <option *ngFor="let item of Airports" [value]="item.id">{{item.title}}</option>
+    </select>
+  </div>
+  <div class="input-group mb-3 col-md-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="Destination-addon">مقصد</span>
+    </div>
+    <select (change)="searchFlights()" name="Destination" aria-describedby="Destination-addon" class="form-control" [(ngModel)]="DestinationId">
+      <option *ngFor="let item of Airports" [value]="item.id">{{item.title}}</option>
+    </select>
+  </div>
+
+  <!-- <select name="Destination" ng-options="Airports as Airports.Title for item in items track by item.Id" ng-model="DestitationId"></select> -->
+  <div class="input-group mb-3 col-md-3">
+
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="date-addon">تاریخ</span>
+    </div>
+    <select (change)="searchFlights()" name="flightDate" class="form-control" [(ngModel)]="flightDate"  aria-describedby="Date-addon">
+      <option>1399/10/22</option>
+      <option>1399/10/23</option>
+      <option>1399/10/24</option>
+      <option>1399/10/25</option>
+      <option>1399/10/26</option>
+      <option>1399/10/27</option>
+      <option>1399/10/28</option>
+      <option>1399/10/29</option>
+      <option>1399/10/30</option>
+      <option>1399/11/01</option>
+    </select>
+  </div>
+  <div class="input-group mb-3 col-md-2">
+
+    <div class="input-group-prepend">
+      <span  class="input-group-text" id="quantity-addon">تعداد</span>
+    </div>
+    <input (change)="searchFlights()" type="number" name="quantity" [(ngModel)]="quantity" class="form-control"  aria-describedby="quantity-addon" />
+  </div>
+</div>
+<!-- <div class="row m-1 text-center"><button class="col-md-2 ml-3 btn btn-info" (click)="searchFlights()">جستجو</button></div> -->
+<div class="row m-1  text-center">
+<p class="col-md-12" *ngIf="!Flights"><em>اطلاعات یافت نشد...</em></p>
+
+<table class='table table-striped rtl' aria-labelledby="tableLabel" *ngIf="Flights">
+  <thead>
+    <tr>
+      <th>شماره</th>
+      <th>از مبداء</th>
+      <th>به مقصد</th>
+      <th>تاریخ</th>
+      <th>قیمت</th>
+      <th>ظرفیت</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let fly of Flights">
+      <td>{{ fly.title }}</td>
+      <td>{{ fly.source }}</td>
+      <td>{{ fly.destination }}</td>
+      <td>{{ fly.date }}</td>
+      <td>{{ fly.price }}</td>
+      <td>{{ fly.quantity }}</td>
+      <td><a [routerLink]="[ '/Reserve', fly.id,quantity]" > رزرو </a></td>
+      <!-- <td><button data-flightId = {{fly.}} class="btn btn-info" (click)="gotoReserve("+{{}}+")">رزرو</button></td> -->
+    </tr>
+  </tbody>
+</table>
+</div>

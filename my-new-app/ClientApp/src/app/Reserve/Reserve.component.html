@@ -1,0 +1,72 @@
+<h1 class="m-3 text-right">ثبت نام مسافران</h1>
+<div class="text-center">
+  <h6 class="toast-header rtl">
+    <p>
+      <strong class="mr-auto text-primary">
+        {{flightTitle}}</strong>
+    </p>
+  </h6>
+  <h6 class="toast-header rtl">
+    <strong class="mr-auto text-primary">
+      <p>تعداد مسافرین: {{passengersCount}} نفر</p>
+    </strong>
+  </h6>
+</div>
+
+
+<form (ngSubmit)="Reserve()" *ngIf="passengers">
+  <div *ngFor="let pass of passengers">
+    <h6 class="rtl">
+      <p>{{pass.Title }}</p>
+    </h6>
+    <div class="container p-3 my-3 border row rtl">
+
+
+      <div class="form-group col-md-5">
+        <label for="NationalityCode">کد ملی</label>
+        <input type="text" name="username" class="form-control" [(ngModel)]="pass.NationalityCode" />
+      </div>
+      <div class="form-group col-md-5">
+        <label for="FullName">نام </label>
+        <input type="text" name="FullName" class="form-control" [(ngModel)]="pass.FullName" />
+      </div>
+      <div class="form-group col-md-2">
+        <label for="Age">سن</label>
+        <input type="number" name="Age" class="form-control" [(ngModel)]="pass.Age" />
+      </div>
+      <div class="form-group">
+        <!-- <a routerLink="/register" class="btn btn-link">ثبت نام</a> -->
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">
+    <span class="mr-1"></span>
+    تایید نهایی
+  </button>
+</form>
+
+
+<!-- <h2>Login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+            <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Login
+        </button>
+        <a routerLink="/register" class="btn btn-link">Register</a>
+    </div>
+</form> -->
