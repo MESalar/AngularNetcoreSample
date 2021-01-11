@@ -16,16 +16,24 @@ namespace my_new_app.Infrastructure
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            string IP = context.HttpContext.Connection.RemoteIpAddress.ToString();
-            if (!context.HttpContext.Request.Headers.ContainsKey("csrf"))
+            try
+            {
+                string IP = context.HttpContext.Connection.RemoteIpAddress.ToString();
+                if (!context.HttpContext.Request.Headers.ContainsKey("csrf"))
+                {
+                    context.Result = new UnauthorizedResult();
+                    return;
+                }
+
+                Guid token = new Guid(context.HttpContext.Request.Headers["csrf"]);
+                if (!_userRepo.TokenIsValid(token))
+                    context.Result = new UnauthorizedResult();
+            }
+            catch (System.Exception ex)
             {
                 context.Result = new UnauthorizedResult();
-                return;
             }
 
-            Guid token = new Guid(context.HttpContext.Request.Headers["csrf"]);
-            if (!_userRepo.TokenIsValid(token))
-                context.Result = new UnauthorizedResult();
         }
 
     }
