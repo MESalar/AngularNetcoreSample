@@ -26,11 +26,15 @@ export class LoginComponent {
     console.log(this.loginInfo);
     this._http.post<apiResponse<loginResponse>>(url, this.loginInfo).subscribe(result => {
       this.checkResult(result, (data) => {
+        if (data == null || data == undefined) {
+          alert("نام کاربری یا رمز عبوور اشتباه است");
+          return;
+        }
         localStorage.setItem("token", data.token);
         localStorage.setItem("userName", data.displayName);
         console.log("LOGIN RESPONSE: " + data);
         console.log(localStorage.getItem("token"));
-        if (document.referrer != null && document.referrer != undefined && document.referrer != ""&&document.referrer.indexOf("Login")<=0)
+        if (document.referrer != null && document.referrer != undefined && document.referrer != "" && document.referrer.indexOf("Login") <= 0)
           window.open(document.referrer, "_self");
         else
           window.open(this._baseUrl + "SearchFlights", "_self");
